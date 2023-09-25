@@ -12,7 +12,7 @@ const slice = createSlice({
       state.contacts.push(actions.payload);
     },
     setFilter(state, actions) {
-      state.contacts(actions.payload);
+      state.filter = actions.payload;
     },
     deleteContact(state, actions) {
       state.contacts = state.contacts.filter(
