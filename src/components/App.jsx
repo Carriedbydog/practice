@@ -5,12 +5,16 @@ import { Filter } from './Filter/Filter';
 import { nanoid } from 'nanoid';
 import { StyledSubTitle, StyledTitle, StyledWrapper } from 'styles/App.styled';
 import { Form } from './ContactForm/Form';
+import { createSelector } from '@reduxjs/toolkit';
 
 export const App = () => {
-  const [contacts, setContacts] = useState(
-    JSON.parse(window.localStorage.getItem('contacts')) || []
-  );
-  const [filter, setFilter] = useState('');
+  const contacts = createSelector(state => state.contacts.contacts);
+  const filter = useSelector(state => state.contacts.filter);
+
+  // const [contacts, setContacts] = useState(
+  //   JSON.parse(window.localStorage.getItem('contacts')) || []
+  // );
+  // const [filter, setFilter] = useState('');
 
   useEffect(() => {
     window.localStorage.setItem('contacts', JSON.stringify(contacts));
@@ -32,7 +36,7 @@ export const App = () => {
       id: nanoid(),
     };
 
-    setContacts(prev => [...prev, contact]);
+    // setContacts(prev => [...prev, contact]);
   };
 
   const handleChangeFilter = e => {
